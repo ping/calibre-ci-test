@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - '**'
+  workflow_dispatch
 
 jobs:
   install:
@@ -17,6 +18,17 @@ jobs:
 
       - name: Install calibre dependencies
         run: sudo apt-get update -y && sudo apt-get install --no-install-recommends -y libegl1 libopengl0
+
+      - name: Get latest calibre version
+        id: calibrelatest
+        run: echo "::set-output name=ver::$(curl --retry 2 --silent 'http://code.calibre-ebook.com/latest')"
+
+      - name: Binaries Cache
+        id: cache-bin
+        uses: actions/cache@v3
+        with:
+          path: cache/calibre
+          key: cache-calibre-x86_64-${{ steps.calibrelatest.outputs.ver }}
 
       - name: Install calibre
         run: sh install_calibre.sh

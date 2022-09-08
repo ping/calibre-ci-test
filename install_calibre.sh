@@ -14,7 +14,7 @@ else
   rm -rf "${bin_folder}/calibre-*"
   latest_version=`curl --retry 2 --silent http://code.calibre-ebook.com/latest` && \
   dl_url="https://download.calibre-ebook.com/${latest_version}/calibre-${latest_version}-x86_64.txz" && \
-  sig_url="http://code.calibre-ebook.com/signatures/calibre-${latest_version}-x86_64.txz.sha512"
+  sig_url="https://code.calibre-ebook.com/signatures/calibre-${latest_version}-x86_64.txz.sha512"
   echo "Downloading sig $sig_url ..." && \
   curl -L "$sig_url" --retry 2 --show-error --silent --insecure --output "${bin_folder}/${sig_file}" && \
   echo "Downloading bin $dl_url ..." && \
