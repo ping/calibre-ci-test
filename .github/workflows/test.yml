@@ -1,0 +1,17 @@
+name: "Install Calibre"
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Install calibre dependencies
+        run: sudo apt-get update -y && sudo apt-get install --no-install-recommends -y libegl1 libopengl0
+
+      - name: Install calibre
+        run: sh install_calibre.sh
