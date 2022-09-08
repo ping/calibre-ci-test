@@ -16,7 +16,7 @@ else
   dl_url="https://download.calibre-ebook.com/${latest_version}/calibre-${latest_version}-x86_64.txz" && \
   sig_url="http://code.calibre-ebook.com/signatures/calibre-${latest_version}-x86_64.txz.sha512"
   echo "Downloading sig $sig_url ..." && \
-  curl -L "$sig_url" --retry 2 --show-error --silent curl --insecure --output "${bin_folder}/${sig_file}" && \
+  curl -L "$sig_url" --retry 2 --show-error --silent --insecure --output "${bin_folder}/${sig_file}" && \
   echo "Downloading bin $dl_url ..." && \
   curl -L "$dl_url" --retry 2 --show-error --silent --output "${bin_folder}/${bin_file}.part" && \
   echo "$(cat "${bin_folder}/${sig_file}")  ${bin_folder}/${bin_file}.part" | sha512sum --check --status && \
