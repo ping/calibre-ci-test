@@ -14,6 +14,7 @@ else
   rm -rf "${bin_folder}/calibre-*"
   tag="$(curl -L --retry 2 --silent 'https://api.github.com/repos/kovidgoyal/calibre/releases/latest' | jq -r .tag_name)" && \
   latest_version="${tag#*v}" && \
+  echo "Latest version: ${latest_version}" && \
   dl_url="https://github.com/kovidgoyal/calibre/releases/download/v${latest_version}calibre-${latest_version}-x86_64.txz" && \
   sig_url="https://code.calibre-ebook.com/signatures/calibre-${latest_version}-x86_64.txz.sha512" && \
   echo "Downloading sig $sig_url ..." && \
