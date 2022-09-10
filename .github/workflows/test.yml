@@ -25,12 +25,12 @@ jobs:
           tag="$(curl -L --retry 2 --silent 'https://api.github.com/repos/kovidgoyal/calibre/releases/latest' | jq -r .tag_name)" && \
           echo "::set-output name=ver::${tag#*v}"
 
-      - name: Binaries Cache
-        id: cache-bin
-        uses: actions/cache@v3
-        with:
-          path: cache/calibre
-          key: cache-calibre-x86_64-${{ steps.calibrelatest.outputs.ver }}
+      # - name: Binaries Cache
+      #   id: cache-bin
+      #   uses: actions/cache@v3
+      #   with:
+      #     path: cache/calibre
+      #     key: cache-calibre-x86_64-${{ steps.calibrelatest.outputs.ver }}
 
       - name: Install calibre
         run: sh install_calibre.sh
