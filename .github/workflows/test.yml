@@ -29,7 +29,7 @@ jobs:
         id: cache-bin
         uses: actions/cache@v3
         with:
-          path: $HOME/cache/calibre
+          path: cache/calibre
           key: cache-calibre-x86_64-${{ steps.calibrelatest.outputs.ver }}
 
       - name: Install calibre
