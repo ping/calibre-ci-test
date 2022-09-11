@@ -33,4 +33,4 @@ jobs:
       #     key: cache-calibre-x86_64-${{ steps.calibrelatest.outputs.ver }}
 
       - name: Install calibre
-        run: sh install_calibre.sh
+        run: sh .github/workflows/install_calibre.sh
