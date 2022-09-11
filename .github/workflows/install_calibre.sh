@@ -18,8 +18,10 @@ else
   echo "Latest version: ${latest_version}" && \
   dl_url="https://github.com/kovidgoyal/calibre/releases/download/${tag}/calibre-${latest_version}-${platform}.txz" && \
   sig_url="https://calibre-ebook.com/signatures/calibre-${latest_version}-${platform}.txz.sha512" && \
+  sig2_url="https://code.calibre-ebook.com/signatures/calibre-${latest_version}-${platform}.txz.sha512" && \
   echo "Downloading sig $sig_url ..." && \
-  curl -L --retry 2 --show-error --silent --output "${bin_folder}/${sig_file}" "$sig_url" && \
+  { curl -L --retry 2 --show-error --silent --fail --output "${bin_folder}/${sig_file}" "$sig_url" || \
+    curl -L --retry 2 --show-error --insecure --fail --silent --output "${bin_folder}/${sig_file}" "$sig2_url"; } && \
   echo "Downloading bin $dl_url ..." && \
   curl -L --retry 2 --show-error --silent --output "${bin_folder}/${bin_file}.part" "$dl_url" && \
   echo "$(cat "${bin_folder}/${sig_file}")  ${bin_folder}/${bin_file}.part" | sha512sum --check --status && \
