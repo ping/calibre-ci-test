@@ -27,10 +27,10 @@ else
 fi
 
 if [ -f "${bin_folder}/${bin_file}" ]; then
-  echo "Install from cache..."
+  echo "Install from local..."
   mkdir -p "$HOME/calibre-bin/calibre" && \
   tar xf "${bin_folder}/${bin_file}" -C "$HOME/calibre-bin/calibre" && \
-  ~/calibre-bin/calibre/calibre_postinstall && \
+  "$HOME/calibre-bin/calibre/calibre_postinstall" && \
   export PATH=$PATH:$HOME/calibre-bin/calibre && \
   calibre --version && \
   echo "$HOME/calibre-bin/calibre" >> $GITHUB_PATH
