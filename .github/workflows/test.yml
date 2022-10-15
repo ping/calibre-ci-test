@@ -23,14 +23,14 @@ jobs:
         id: calibrelatest
         run: |
           tag="$(curl -L --retry 2 --silent --fail 'https://api.github.com/repos/kovidgoyal/calibre/releases/latest' | jq -r .tag_name)" && \
-          echo "ver=${tag#*v}" >> $GITHUB_ENV
+          echo "calibre_ver=${tag#*v}" >> $GITHUB_ENV
 
       - name: Binaries Cache
         id: cache-bin
         uses: actions/cache@v3
         with:
           path: cache/calibre
-          key: cache-calibre-x86_64-${{ env.ver }}
+          key: cache-calibre-x86_64-${{ env.calibre_ver }}
 
       - name: Install calibre
         run: sh .github/workflows/install_calibre.sh
