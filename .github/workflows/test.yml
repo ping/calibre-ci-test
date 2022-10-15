@@ -11,10 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: true
           fetch-depth: 1
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
       - name: Install calibre dependencies
         run: sudo apt-get update -y && sudo apt-get install --no-install-recommends -y libegl1 libopengl0
